@@ -1,0 +1,29 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('achievements', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('title');
+            $table->string('issuer')->nullable();
+            $table->string('rank')->nullable();
+            $table->string('level')->nullable();
+            $table->string('year', 10);
+            $table->text('description')->nullable();
+            $table->longText('certificate_url')->nullable(); // Menggunakan longText untuk Base64
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('achievements');
+    }
+};
