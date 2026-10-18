@@ -11,9 +11,9 @@ return new class extends Migration
         Schema::create('skills', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('name');                      // Nama Keahlian (contoh: Editing Video, Public Speaking)
-            $table->string('category')->default('Lainnya'); // Kategori (Soft Skill, Teknologi & Digital, Bahasa, dll)
-            $table->string('level')->default('Pemula');     // Tingkat Kemahiran (Pemula, Menengah, Mahir)
+            $table->string('name');
+            $table->string('category')->nullable();
+            $table->string('level')->nullable();
             $table->timestamps();
         });
     }
