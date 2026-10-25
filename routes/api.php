@@ -8,12 +8,7 @@ use App\Http\Controllers\Api\AchievementController;
 use App\Http\Controllers\Api\OrganizationController;
 use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\SkillController;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-*/
+use App\Http\Controllers\Auth\PasswordResetController;
 
 // Route Publik
 Route::post('/register', [AuthController::class, 'register']);
@@ -46,4 +41,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // CRUD Keahlian (Skills)
     Route::post('/skills', [SkillController::class, 'store']);
     Route::delete('/skills/{id}', [SkillController::class, 'destroy']);
+
+    Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLink']);
+    Route::post('/reset-password', [PasswordResetController::class, 'resetPassword']);
 });
